@@ -11,6 +11,7 @@ public class Main {
        serverSocket = new ServerSocket(port);
        serverSocket.setReuseAddress(true);
        clientSocket = serverSocket.accept();
+       clientSocket.getOutputStream().write(new byte[] {0,0,0,0,0,0,0,7});
      } catch (IOException e) {
        System.out.println("IOException: " + e.getMessage());
      } finally {
