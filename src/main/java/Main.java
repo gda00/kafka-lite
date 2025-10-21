@@ -13,8 +13,14 @@ public class Main {
        serverSocket.setReuseAddress(true);
        clientSocket = serverSocket.accept();
        InputStream in = clientSocket.getInputStream();
-       byte[] buffer = in.readNBytes(12);
-       clientSocket.getOutputStream().write(buffer);
+
+       byte[] messageSizeBytes = in.readNBytes(4);
+       byte[] apiKey = in.readNBytes(2);
+       byte[] apiVersion = in.readNBytes(2);
+       byte[] correlationId = in.readNBytes(4);
+
+       clientSocket.getOutputStream().write(messageSizeBytes);
+       clientSocket.getOutputStream().write(correlationId);
      } catch (IOException e) {
        System.out.println("IOException: " + e.getMessage());
      } finally {
