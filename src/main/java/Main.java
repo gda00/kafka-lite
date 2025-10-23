@@ -24,16 +24,15 @@ public class Main {
             byte[] apiVersion = in.readNBytes(2);
             byte[] correlationId = in.readNBytes(4);
             byte[] headerClientIdLength = in.readNBytes(2);
-            short n = ByteBuffer.wrap(headerClientIdLength).getShort();
-            byte[] headerClientIdContents = in.readNBytes(n);
+            byte[] headerClientIdContents = in.readNBytes(ByteBuffer.wrap(headerClientIdLength).getShort());
             byte[] headerTagBuffer = in.readNBytes(1);
 
             // Request Body (v4)
             byte[] bodyClientIdLength = in.readNBytes(1);
-            n = ByteBuffer.wrap(bodyClientIdLength).get();
+            int n = ByteBuffer.wrap(bodyClientIdLength).get() - 1;
             byte[] bodyClientIdContents = in.readNBytes(n);
             byte[] clientSoftwareVersionLength = in.readNBytes(1);
-            n = ByteBuffer.wrap(clientSoftwareVersionLength).get();
+            n = ByteBuffer.wrap(clientSoftwareVersionLength).get() - 1;
             byte[] clientSoftwareVersionContents = in.readNBytes(n);
             byte[] bodyTagBuffer = in.readNBytes(1);
 
