@@ -30,10 +30,10 @@ public class Main {
 
             // Request Body (v4)
             byte[] bodyClientIdLength = in.readNBytes(1);
-            n = ByteBuffer.wrap(bodyClientIdLength).getShort();
+            n = ByteBuffer.wrap(bodyClientIdLength).get();
             byte[] bodyClientIdContents = in.readNBytes(n);
             byte[] clientSoftwareVersionLength = in.readNBytes(1);
-            n = ByteBuffer.wrap(clientSoftwareVersionLength).getShort();
+            n = ByteBuffer.wrap(clientSoftwareVersionLength).get();
             byte[] clientSoftwareVersionContents = in.readNBytes(n);
             byte[] bodyTagBuffer = in.readNBytes(1);
 
