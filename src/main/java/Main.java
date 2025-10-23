@@ -28,11 +28,11 @@ public class Main {
             byte[] headerTagBuffer = in.readNBytes(1);
 
             // Request Body (v4)
-            byte[] bodyClientIdLength = in.readNBytes(1);
-            int n = ByteBuffer.wrap(bodyClientIdLength).get() - 1;
+            int bodyClientIdLength = in.read();
+            int n = bodyClientIdLength - 1;
             byte[] bodyClientIdContents = in.readNBytes(n);
-            byte[] clientSoftwareVersionLength = in.readNBytes(1);
-            n = ByteBuffer.wrap(clientSoftwareVersionLength).get() - 1;
+            int clientSoftwareVersionLength = in.read();
+            n = clientSoftwareVersionLength - 1;
             byte[] clientSoftwareVersionContents = in.readNBytes(n);
             byte[] bodyTagBuffer = in.readNBytes(1);
 
