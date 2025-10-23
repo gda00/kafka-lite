@@ -119,7 +119,6 @@ public class Main {
             clientSocket.getOutputStream().write(apiVers1);
             clientSocket.getOutputStream().write(apiVers2);
             clientSocket.getOutputStream().write(apiVers3);
-            clientSocket.getOutputStream().write(apiVers1);
             clientSocket.getOutputStream().write(throttleTime);
             clientSocket.getOutputStream().write(responseTagBuffer);
         } catch (IOException e) {
